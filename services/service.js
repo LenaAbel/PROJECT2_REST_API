@@ -374,10 +374,10 @@ const getYearsWithoutPrizesF10 = (callback) => {
 
 /**
  * Get all years of Nobel Prizes sorted by number of ascending/descending laureates
- * @param id of the laureate
+ * @param sort
  * @param callback
  */
-const allYearsPrizesSortedF11 = (id, callback) => {
+const allYearsPrizesSortedF11 = (sort, callback) => {
     getNumLaureatesPerYearF8((error, results) => {
         if(error) {
             return callback([]);
@@ -387,10 +387,10 @@ const allYearsPrizesSortedF11 = (id, callback) => {
                 results.splice(results.indexOf(results.find(obj => obj.laureates === 0)), 1)
             }
             // If parameters is -laureates
-            if (id.charAt(0) === "-") {
+            if (sort.charAt(0) === "-") {
                 return callback(null, results)
                 // Else if +laureates
-            } else if (id.charAt(0) === "+") {
+            } else if (sort.charAt(0) === "+") {
                 return callback(null, results.sort((a, b) => a.laureates - b.laureates));
             }
         }
